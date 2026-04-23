@@ -23,7 +23,7 @@ public class VehiculoElectrico : Vehiculo
     {
         double total = (kilometros / 100.0) * kwhBase;
 
-        if (capacidadCarga > 1200)
+        if (GetCapacidadCarga()> 1200)
         {
             total = total * 1.15;
         }
