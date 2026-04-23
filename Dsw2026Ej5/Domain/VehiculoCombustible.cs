@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Dsw2026Ej5.Domain;
 
-public class VehiculoCombustible: Vehiculo
+public class VehiculoCombustible : Vehiculo
 {
     private double kilometrosPorLitro;
     private double litrosExtra;
 
-    public VehiculoCombustible(string patente, string marca, string modelo, int anio, double capacidadCarga, 
+    public VehiculoCombustible(string patente, string marca, string modelo, int anio, double capacidadCarga,
         Sucursal sucursal, double kilometrosPorLitro, double litrosExtra) : base(VehiculoTipo.Combustible, patente, marca, modelo, anio, capacidadCarga, sucursal)
     {
         this.kilometrosPorLitro = kilometrosPorLitro;
@@ -26,11 +26,19 @@ public class VehiculoCombustible: Vehiculo
         return litrosExtra;
     }
 
-    public double calcularConsumo(double kilometros)
+
+
+        public override double CalcularConsumo(double kilometros)
     {
-        double total = kilometrosPorLitro - litrosExtra;
+        double total = kilometros / kilometrosPorLitro;
+        int antiguedad = 2026 - GetAnio();
+        if (antiguedad > 5)
+        {
+            total += (kilometros / 15) * litrosExtra;
+        }
+
         return total;
+        ///return kilometros * kilometrosPorLitro;
     }
 }
-
 
